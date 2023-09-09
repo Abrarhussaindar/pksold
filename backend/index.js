@@ -7,6 +7,10 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 
 
+const authRoute = require('./routes/auth');
+
+
+
 
 // config
 dotenv.config();
@@ -18,3 +22,10 @@ app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.use("/api/auth", authRoute);
+
+app.listen(8800, () => {
+    console.log('Backend server is running! on 8800');
+});
